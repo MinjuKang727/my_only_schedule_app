@@ -1,1 +1,2 @@
-# my_only_schedule_app
+# 🏴 나만의 일정 관리 앱 서버 만들기
+
