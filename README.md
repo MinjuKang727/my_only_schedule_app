@@ -5,4 +5,5 @@
   
 
 ## ERD
-![image](https://github.com/user-attachments/assets/ced94c98-a43d-4786-adbd-b4d03bba356b)
+<img width="80%" alt="ERD" src="https://github.com/user-attachments/assets/f16fab83-9d38-4c46-a505-6848d324e881">
+
