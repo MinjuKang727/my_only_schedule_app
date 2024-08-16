@@ -6,5 +6,7 @@
   
 
 ## ERD
-<img width="80%" alt="ERD" src="https://github.com/user-attachments/assets/f16fab83-9d38-4c46-a505-6848d324e881">
+![ERD](https://github.com/user-attachments/assets/dbbea59d-0f34-4bfc-9fb1-84677f7d6bba)
+
+
 
