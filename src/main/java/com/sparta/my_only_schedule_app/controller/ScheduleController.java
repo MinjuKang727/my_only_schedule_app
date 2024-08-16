@@ -20,32 +20,32 @@ public class ScheduleController {
     }
 
     // 일정 등록
-    @PostMapping("/schedule")
+    @PostMapping("/schedules")
     public ScheduleResponseDto createSchedule(@RequestBody ScheduleRequestDto requestDto) {
         return this.scheduleService.save(requestDto);
     }
 
     // 일정 조회
-    @GetMapping("/schedule/{id}")
-    public ScheduleResponseDto getSchedule(@PathVariable long id) {
-        return this.scheduleService.getSchedule(id);
+    @GetMapping("/schedules/{schedule_id}")
+    public ScheduleResponseDto getSchedule(@PathVariable long schedule_id) {
+        return this.scheduleService.getSchedule(schedule_id);
     }
 
     // 일정 목록 조회
-    @GetMapping("/schedule")
-    public List<ScheduleResponseDto> getScheduleList(@RequestParam(required = false) String edit_date, @RequestParam(required = false) String name) {
-        return this.scheduleService.getScheduleList(edit_date, name);
+    @GetMapping("/schedules")
+    public List<ScheduleResponseDto> getSchedules(@RequestParam(required = false) String edit_date, @RequestParam(required = false) String name) {
+        return this.scheduleService.getSchedules(edit_date, name);
     }
 
     // 일정 수정
-    @PutMapping("/schedule/{id}")
-    public ScheduleResponseDto editSchedule(@PathVariable long id, @RequestBody ScheduleRequestDto requestDto) {
-        return this.scheduleService.update(id, requestDto);
+    @PutMapping("/schedules/{schedule_id}")
+    public ScheduleResponseDto editSchedule(@PathVariable long schedule_id, @RequestBody ScheduleRequestDto requestDto) {
+        return this.scheduleService.update(schedule_id, requestDto);
     }
 
     // 일정 삭제
-    @DeleteMapping("/schedule/{id}")
-    public long deleteSchedule(@PathVariable long id, @RequestBody ScheduleRequestDto requestDto) {
-        return this.scheduleService.delete(id, requestDto.getPw());
+    @DeleteMapping("/schedules/{schedule_id}")
+    public long deleteSchedule(@PathVariable long schedule_id, @RequestBody ScheduleRequestDto requestDto) {
+        return this.scheduleService.delete(schedule_id, requestDto.getPw());
     }
 }
