@@ -71,3 +71,6 @@ ALTER TABLE schedule.schedule MODIFY schedule_id INT(10) AUTO_INCREMENT;
 # manager에서 담당자를 삭제할 때, 관련 일정도 함께 삭제되도록 테이블 수정
 ALTER TABLE schedule.schedule DROP FOREIGN KEY schedule_fk;
 ALTER TABLE schedule.schedule ADD CONSTRAINT schedule_fk FOREIGN KEY(manager_id) REFERENCES schedule.manager(manager_id) ON DELETE CASCADE ON UPDATE CASCADE;
+
+# 할일은 최대 200자 이내로 제한하라는 추가요구사항으로 테이블 칼럼 수정
+ALTER TABLE schedule.schedule MODIFY todo VARCHAR(200) NOT NULL;
