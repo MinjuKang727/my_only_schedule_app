@@ -7,7 +7,6 @@ import com.sparta.my_only_schedule_app.entity.Schedule;
 import com.sparta.my_only_schedule_app.exception.CommonException;
 import com.sparta.my_only_schedule_app.exception.ExceptionCode;
 import com.sparta.my_only_schedule_app.repository.ScheduleRepository;
-import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -18,7 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class ScheduleService {
 
-    private final EntityManager em;
     private final ScheduleRepository scheduleRepository;
 
     /**
@@ -26,7 +24,7 @@ public class ScheduleService {
      * @param resquestDto : 등록할 일정 정보를 받은 객체
      * @return 등록한 Schedule 객체
      */
-    @Transactional(readOnly = true)
+    @Transactional
     public ScheduleResponseDto saveSchedule(ScheduleCreateRequestDto resquestDto) throws CommonException {
         log.trace("ScheduleService - saveSchedule() 메서드 실행");
         Schedule schedule = new Schedule(resquestDto);
@@ -73,8 +71,11 @@ public class ScheduleService {
                                                         new CommonException(ExceptionCode.INVALID_SC_ID, id)
                                                 );
         schedule.update(requestDto);
-        em.flush();
-        Schedule updatedSchedule = em.find(Schedule.class, id);
+
+        Schedule updatedSchedule = this.scheduleRepository.findById(id)
+                                                            .orElseThrow(() ->
+                                                                    new CommonException(ExceptionCode.INVALID_SC_ID, id)
+                                                            );
 
         return new ScheduleResponseDto(updatedSchedule);
     }
