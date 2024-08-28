@@ -5,12 +5,18 @@
 > Java & JDBC로 개발  
 > 개발 기간 : 2024.08.01 ~ 08.08 *(1주일)*
 
-- **API**  
+#### API  
+
   ![ver1_API](https://github.com/MinjuKang727/my_only_schedule_app/blob/main/image/ver1_api.png)  
 
+<br>
 
-- **ERD**  
+#### ERD  
+
   ![ver1_ERD](https://github.com/MinjuKang727/my_only_schedule_app/blob/main/image/ver1_erd.png)  
+  
+<br>
+
 ---
 ### Ver.2
 > Spring Boot & JPA로 개발   
@@ -37,15 +43,21 @@
 
 > **0단계**  
 > 과제의 첫걸음
-1. **API**
+#### 1. API  
+
    ![ver2_API](https://github.com/MinjuKang727/my_only_schedule_app/blob/main/image/ver2_api.png)  
 
-
-2. **ERD**
-   ![ver2_ERD](https://github.com/MinjuKang727/my_only_schedule_app/blob/main/image/ver1_erd.png)
+<br>
 
 
-3. SQL 작성하기
+#### 2. ERD  
+
+   ![ver2_ERD](https://github.com/MinjuKang727/my_only_schedule_app/blob/main/image/ver2_erd.png)
+
+<br>
+
+#### 3. SQL 작성하기
+> sql 파일 참고
 
 > **1단계**  
 > 기능 : 일정 CRU
