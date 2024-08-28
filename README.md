@@ -6,11 +6,11 @@
 > 개발 기간 : 2024.08.01 ~ 08.08 *(1주일)*
 
 - **API**  
-  ![ver1_API](.\image\ver1_api.png)  
+  ![ver1_API](https://github.com/MinjuKang727/my_only_schedule_app/blob/main/image/ver1_api.png)  
 
 
 - **ERD**  
-  ![ver1_ERD](.\image\ver1_erd.png)  
+  ![ver1_ERD](https://github.com/MinjuKang727/my_only_schedule_app/blob/main/image/ver1_erd.png)  
 ---
 ### Ver.2
 > Spring Boot & JPA로 개발   
@@ -38,11 +38,11 @@
 > **0단계**  
 > 과제의 첫걸음
 1. **API**
-   ![ver2_API](.\image\ver2_api.png)  
+   ![ver2_API](https://github.com/MinjuKang727/my_only_schedule_app/blob/main/image/ver2_api.png)  
 
 
 2. **ERD**
-   ![ver2_ERD](.\image\ver2_erd.png)
+   ![ver2_ERD](https://github.com/MinjuKang727/my_only_schedule_app/blob/main/image/ver1_erd.png)
 
 
 3. SQL 작성하기
