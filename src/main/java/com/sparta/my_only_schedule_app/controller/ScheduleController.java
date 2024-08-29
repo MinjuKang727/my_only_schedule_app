@@ -1,11 +1,12 @@
 package com.sparta.my_only_schedule_app.controller;
 
-import com.sparta.my_only_schedule_app.dto.request.ScheduleCreateRequestDto;
-import com.sparta.my_only_schedule_app.dto.request.ScheduleUpdateRequestDto;
-import com.sparta.my_only_schedule_app.dto.response.ScheduleResponseDto;
+import com.sparta.my_only_schedule_app.dto.schedule.request.ScheduleCreateRequestDto;
+import com.sparta.my_only_schedule_app.dto.schedule.request.ScheduleUpdateRequestDto;
+import com.sparta.my_only_schedule_app.dto.schedule.response.ScheduleResponseDto;
 import com.sparta.my_only_schedule_app.exception.CommonException;
 import com.sparta.my_only_schedule_app.service.ScheduleService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -27,28 +28,30 @@ public class ScheduleController {
      */
     @PostMapping("/schedules")
     public ResponseEntity<ScheduleResponseDto> createSchedule(@RequestBody @Valid ScheduleCreateRequestDto requestDto) throws CommonException {
+        log.trace("ScheduleController - createSchedule() 메서드 실행");
         return ResponseEntity.ok(this.scheduleService.saveSchedule(requestDto));
     }
 
 
     /**
      * 일정 조회(단건 조회)
-     * @param id : 조회할 일정 고유 번호
+     * @param scheduleId : 조회할 일정 고유 번호
      * @return 조회된 일정 정보를 담은 객체
      */
-    @GetMapping("/schedules/{id}")
-    public ResponseEntity<ScheduleResponseDto> getSchedule(@PathVariable long id) throws CommonException {
-        return ResponseEntity.ok(this.scheduleService.getSchedule(id));
+    @GetMapping("/schedules/{scheduleId}")
+    public ResponseEntity<ScheduleResponseDto> getSchedule(@PathVariable long scheduleId) throws CommonException {
+        log.trace("ScheduleController - getSchedule() 메서드 실행");
+        return ResponseEntity.ok(this.scheduleService.getSchedule(scheduleId));
     }
 
     /**
      * 일정 수정
-     * @param id : 수정할 일정 고유 번호
      * @param requestDto : 수정할 일정 정보를 담은 객체
      * @return ScheduleResponseDto : 수정된 일정 정보를 담은 객체
      */
-    @PutMapping("/schedules/{id}")
-    public ResponseEntity<ScheduleResponseDto> updateSchedule(@PathVariable long id, @RequestBody @Valid ScheduleUpdateRequestDto requestDto) throws CommonException {
-        return ResponseEntity.ok(this.scheduleService.updateSchedule(id, requestDto));
+    @PutMapping("/schedules/{scheduleId}")
+    public ResponseEntity<ScheduleResponseDto> updateSchedule(@PathVariable long scheduleId, @RequestBody @Valid ScheduleUpdateRequestDto requestDto) throws CommonException {
+        log.trace("ScheduleController - updateSchedule() 메서드 실행");
+        return ResponseEntity.ok(this.scheduleService.updateSchedule(scheduleId, requestDto));
     }
 }
