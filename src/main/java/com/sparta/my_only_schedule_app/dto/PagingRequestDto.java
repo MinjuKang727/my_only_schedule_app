@@ -18,14 +18,13 @@ public class PagingRequestDto {
     private Integer pageNumber;
     private Integer pageSize = 10;
 
-    public void setPageNumber(Integer pageNumber) {
-        this.pageNumber = pageNumber - 1;
+    public PagingRequestDto(Integer pageNumber) {
+        this.pageNumber = pageNumber;
     }
 
-    public void setPageSize(Integer pageSize) {
-        if (pageSize != null) {
-            this.pageSize = pageSize;
-        }
+    public PagingRequestDto(Integer pageNumber, Integer pageSize) {
+        this.pageNumber = pageNumber;
+        this.pageSize = pageSize;
     }
 
     public Pageable getPageable() {

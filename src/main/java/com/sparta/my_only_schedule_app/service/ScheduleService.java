@@ -2,6 +2,7 @@ package com.sparta.my_only_schedule_app.service;
 
 import com.sparta.my_only_schedule_app.dto.PagingRequestDto;
 import com.sparta.my_only_schedule_app.dto.schedule.request.ScheduleCreateRequestDto;
+import com.sparta.my_only_schedule_app.dto.schedule.request.ScheduleDeleteRequestDto;
 import com.sparta.my_only_schedule_app.dto.schedule.request.ScheduleUpdateRequestDto;
 import com.sparta.my_only_schedule_app.dto.schedule.response.ScheduleReadAllResponseDto;
 import com.sparta.my_only_schedule_app.dto.schedule.response.ScheduleResponseDto;
@@ -12,7 +13,7 @@ import com.sparta.my_only_schedule_app.repository.ScheduleRepository;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.*;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -102,6 +103,27 @@ public class ScheduleService {
         return new ScheduleResponseDto(updatedSchedule);
     }
 
+    /**
+     * 일정 삭제
+     * @param scheduleId : 삭제할 일정 고유 번호
+     * @param requestDto : 삭제할 일정 유저명을 담은 객체
+     * @return 삭제된 일정 고유 번호
+     * @throws CommonException : scheduleId의 일정이 존재하지 않거나 requestDto의 유저명이 작성 유저명과 일치하지 않는 경우 발생
+     */
+    @Transactional
+    public Long deleteSchedule(Long scheduleId, ScheduleDeleteRequestDto requestDto) throws CommonException {
+        log.trace("CommentService - deleteSchedule() 메서드 실행");
+        Schedule schedule = this.scheduleRepository.findById(scheduleId)
+                .orElseThrow(() ->
+                        new CommonException(ExceptionCode.INVALID_SC_ID)
+                );
 
+        if (!schedule.getCreaterName().equals(requestDto.getCreaterName())) {
+            throw new CommonException(ExceptionCode.INVALID_SC_CREATER);
+        }
 
+        em.remove(schedule);
+
+        return scheduleId;
+    }
 }

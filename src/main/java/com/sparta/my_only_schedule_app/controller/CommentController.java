@@ -7,8 +7,6 @@ import com.sparta.my_only_schedule_app.dto.comment.response.CommentResponseDto;
 import com.sparta.my_only_schedule_app.exception.CommonException;
 import com.sparta.my_only_schedule_app.service.CommentService;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.Min;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -72,6 +70,13 @@ public class CommentController {
         return ResponseEntity.ok(this.commentService.updateComment(commentId, requestDto));
     }
 
+    /**
+     * 댓글 삭제
+     * @param commentId : 삭제할 댓글 고유 번호
+     * @param requestDto : 현재 댓글을 삭제하고자 하는 유저명을 담고 있는 객체
+     * @return 댓글 고유 번호
+     * @throws CommonException : commentId의 댓글이 존재하지 않거나, 현재 유저가 댓글 작성자가 아닌 경우 발생
+     */
     @DeleteMapping("/{scheduleId}/comments/{commentId}")
     public ResponseEntity<Long> deleteComment(@PathVariable Long commentId, @RequestBody @Valid CommentDeleteRequestDto requestDto) throws CommonException {
         return ResponseEntity.ok(this.commentService.deleteComment(commentId, requestDto));

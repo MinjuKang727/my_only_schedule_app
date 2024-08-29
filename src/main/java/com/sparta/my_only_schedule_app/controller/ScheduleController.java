@@ -2,6 +2,7 @@ package com.sparta.my_only_schedule_app.controller;
 
 import com.sparta.my_only_schedule_app.dto.PagingRequestDto;
 import com.sparta.my_only_schedule_app.dto.schedule.request.ScheduleCreateRequestDto;
+import com.sparta.my_only_schedule_app.dto.schedule.request.ScheduleDeleteRequestDto;
 import com.sparta.my_only_schedule_app.dto.schedule.request.ScheduleUpdateRequestDto;
 import com.sparta.my_only_schedule_app.dto.schedule.response.ScheduleReadAllResponseDto;
 import com.sparta.my_only_schedule_app.dto.schedule.response.ScheduleResponseDto;
@@ -67,5 +68,17 @@ public class ScheduleController {
     public ResponseEntity<ScheduleResponseDto> updateSchedule(@PathVariable long scheduleId, @RequestBody @Valid ScheduleUpdateRequestDto requestDto) throws CommonException {
         log.trace("ScheduleController - updateSchedule() 메서드 실행");
         return ResponseEntity.ok(this.scheduleService.updateSchedule(scheduleId, requestDto));
+    }
+
+    /**
+     * 일정 삭제
+     * @param scheduleId : 삭제할 일정 고유 번호
+     * @param requestDto : 현재 일정을 삭제하고자 하는 유저명을 담고 있는 객체
+     * @return 일정 고유 번호
+     * @throws CommonException : commentId의 댓글이 존재하지 않거나, 현재 유저가 댓글 작성자가 아닌 경우 발생
+     */
+    @DeleteMapping("/schedules/{scheduleId}")
+    public ResponseEntity<Long> deleteComment(@PathVariable Long scheduleId, @RequestBody @Valid ScheduleDeleteRequestDto requestDto) throws CommonException {
+        return ResponseEntity.ok(this.scheduleService.deleteSchedule(scheduleId, requestDto));
     }
 }
