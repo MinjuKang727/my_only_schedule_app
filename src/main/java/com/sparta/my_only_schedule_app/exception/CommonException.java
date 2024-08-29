@@ -1,12 +1,10 @@
 package com.sparta.my_only_schedule_app.exception;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 import java.time.Clock;
 import java.time.LocalDateTime;
-import java.util.Map;
 
 @Getter
 public class CommonException extends Exception {

@@ -1,7 +1,9 @@
 package com.sparta.my_only_schedule_app.service;
 
+import com.sparta.my_only_schedule_app.dto.PagingRequestDto;
 import com.sparta.my_only_schedule_app.dto.schedule.request.ScheduleCreateRequestDto;
 import com.sparta.my_only_schedule_app.dto.schedule.request.ScheduleUpdateRequestDto;
+import com.sparta.my_only_schedule_app.dto.schedule.response.ScheduleReadAllResponseDto;
 import com.sparta.my_only_schedule_app.dto.schedule.response.ScheduleResponseDto;
 import com.sparta.my_only_schedule_app.entity.Schedule;
 import com.sparta.my_only_schedule_app.exception.CommonException;
@@ -10,6 +12,7 @@ import com.sparta.my_only_schedule_app.repository.ScheduleRepository;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -56,6 +59,24 @@ public class ScheduleService {
     }
 
     /**
+     * 일정 전체 조회(다건 조회)
+     * @param requestDto : 페이징 조건 데이터를 담은 객체
+     * @return : 페이징된 일정 조회 결과를 담은 객체
+     * @throws CommonException : 조회 결과가 존재하지 않을 때, 발생
+     */
+    @Transactional(readOnly = true)
+    public Page<ScheduleReadAllResponseDto> getSchedules(PagingRequestDto requestDto) throws CommonException {
+        log.trace("ScheduleService - getSchedules() 메서드 실행");
+        Page<Schedule> scheduleList = this.scheduleRepository.findAll(requestDto.getPageable());
+
+        if (scheduleList.isEmpty()) {
+            throw new CommonException(ExceptionCode.NO_RESULT);
+        }
+
+        return scheduleList.map(ScheduleReadAllResponseDto::new);
+    }
+
+    /**
      * 일정 수정
      * @param requestDto : 수정할 일정 정보가 담긴 객체
      * @return 수정한 일정 정보가 담긴 객체
@@ -80,4 +101,7 @@ public class ScheduleService {
 
         return new ScheduleResponseDto(updatedSchedule);
     }
+
+
+
 }

@@ -1,9 +1,6 @@
 package com.sparta.my_only_schedule_app.entity;
 
 import com.sparta.my_only_schedule_app.dto.comment.request.CommentCreateRequestDto;
-import com.sparta.my_only_schedule_app.dto.comment.request.CommentUpdateRequestDto;
-import com.sparta.my_only_schedule_app.dto.schedule.request.ScheduleCreateRequestDto;
-import com.sparta.my_only_schedule_app.dto.schedule.request.ScheduleUpdateRequestDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
